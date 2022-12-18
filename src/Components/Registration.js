@@ -4,7 +4,6 @@ import Login from "./Login";
 import ReactDOM from "react-dom";
 import logo from "../Assests/Logo.jpg";
 import BaseCtrl from "../BaseCtrl";
-import { Link } from "react-router-dom";
 
 export default class Registration extends BaseCtrl {
   registered() {
@@ -111,11 +110,6 @@ export default class Registration extends BaseCtrl {
                     <button className="myBtn" onClick={(ev) => this.reset(ev)}>
                       Reset
                     </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Link to="/Login">Login</Link>
                   </td>
                 </tr>
               </tbody>
