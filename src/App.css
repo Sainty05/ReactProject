@@ -1,0 +1,107 @@
+/* Utilities */
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.txtHgt{
+  height: 50px;
+}
+
+.myBtn {
+  width: auto;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+  font-weight: bold;
+  z-index: 100;
+  transition: 0.3s;
+  padding: 5px 20px;
+  cursor: pointer;
+  font-size: large;
+}
+
+.myBtn:hover {
+  background-color: rgb(206, 206, 206);
+}
+
+/* Navbar */
+
+.Navbar {
+  background-color: black;
+  display: flex;
+  padding: 10px;
+  top: 0px;
+  width: 100%;
+  height: 15vh;
+  justify-content: space-between;
+}
+
+.Navbar img {
+  height: 70px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.Navbar-items {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  border-radius: 5px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(206, 206, 206);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* App */
+
+.app {
+  background-image: url("./Assests/Logo.jpg");
+  background-size: cover;
+  min-height: 80vh;
+  background-blend-mode: lighten;
+  opacity: 0.1;
+}
+
+.bg-color {
+  background-color: rgb(253, 157, 157);
+  padding: 5px;
+  min-height: 80vh;
+}
+
+/* footer */
+
+.footer {
+  background-color: rgb(41, 41, 41);
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 5vh;
+}
