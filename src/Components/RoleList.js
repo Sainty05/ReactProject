@@ -17,18 +17,18 @@ export default class RoleList extends BaseCtrl {
         <h6 colSpan="2" className={`text-${this.state.txtClr} text-center`}>
           {this.state.message}
         </h6>
-        <Table striped bordered hover responsive variant="dark">
+        <Table striped bordered hover responsive variant="dark" size="sm">
           <thead>
             <tr>
-              <th>Index</th>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Created By</th>
-              <th>Creation Date</th>
-              <th>Modified By</th>
-              <th>Modification Date</th>
-              <th>Description</th>
-              <th>Status</th>
+              <th className="text-center">Index</th>
+              <th className="text-center">ID</th>
+              <th className="text-center">Name</th>
+              <th className="text-center">Created By</th>
+              <th className="text-center">Creation Date</th>
+              <th className="text-center">Modified By</th>
+              <th className="text-center">Modification Date</th>
+              <th className="text-center">Description</th>
+              <th className="text-center">Status</th>
               <th className="text-center" colSpan={2}>
                 Action
               </th>
@@ -37,15 +37,15 @@ export default class RoleList extends BaseCtrl {
           <tbody>
             {this.state.list.map((ele, index) => (
               <tr>
-                <td>{index + 1}</td>
-                <td>{ele.id}</td>
-                <td>{ele.name}</td>
-                <td>{ele.createdBy}</td>
-                <td>{new Date(ele.createdDatetime).toDateString()}</td>
-                <td>{ele.modifiedBy}</td>
-                <td>{new Date(ele.modifiedDatetime).toDateString()}</td>
-                <td>{ele.discription}</td>
-                <td>{ele.status}</td>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{ele.id}</td>
+                <td className="text-center">{ele.name}</td>
+                <td className="text-center">{ele.createdBy}</td>
+                <td className="text-center">{new Date(ele.createdDatetime).toDateString()}</td>
+                <td className="text-center">{ele.modifiedBy}</td>
+                <td className="text-center">{new Date(ele.modifiedDatetime).toDateString()}</td>
+                <td className="text-center">{ele.discription}</td>
+                <td className="text-center">{ele.status}</td>
                 <td className="text-center">
                 <Link to={"/Role/" + ele.id} className="btn btn-dark">
                     Edit

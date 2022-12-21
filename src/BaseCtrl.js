@@ -28,6 +28,28 @@ export default class BaseCtrl extends Component {
       message: "",
       txtClr: "",
       list: [],
+      inputError: {
+        rollNo: "",
+        name: "",
+        phoneNo: "",
+        address: "",
+        loginId: "",
+        password: "",
+        city: "",
+        state: "",
+        studentId: "",
+        chemistry: "",
+        maths: "",
+        physics: "",
+        discription: "",
+        lastName: "",
+        firstName: "",
+        collegeId: "",
+        mobileNo: "",
+        email: "",
+        collegeName: "",
+        roleId: "",
+      },
     };
   }
 
@@ -58,6 +80,28 @@ export default class BaseCtrl extends Component {
         });
       } else {
         this.setState({
+          inputError: {
+            studentId: res.data.result.inputerror.studentId,
+            chemistry: res.data.result.inputerror.chemistry,
+            maths: res.data.result.inputerror.maths,
+            physics: res.data.result.inputerror.physics,
+            rollNo: res.data.result.inputerror.rollNo,
+            name: res.data.result.inputerror.name,
+            phoneNo: res.data.result.inputerror.phoneNo,
+            address: res.data.result.inputerror.address,
+            loginId: res.data.result.inputerror.loginId,
+            password: res.data.result.inputerror.password,
+            city: res.data.result.inputerror.city,
+            state: res.data.result.inputerror.state,
+            discription: res.data.result.inputerror.discription,
+            lastName: res.data.result.inputerror.lastName,
+            firstName: res.data.result.inputerror.firstName,
+            collegeId: res.data.result.inputerror.collegeId,
+            mobileNo: res.data.result.inputerror.mobileNo,
+            email: res.data.result.inputerror.email,
+            collegeName: res.data.result.inputerror.collegeId,
+            roleId: res.data.result.inputerror.roleId,
+          },
           message: `${item} didn't ${
             this.props.match.params.pid ? "Updated" : "Added"
           }`,
@@ -71,7 +115,6 @@ export default class BaseCtrl extends Component {
     let id = this.props.match.params.pid;
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/get/` + id;
     axios.get(url).then((res) => {
-      console.log(res);
       this.setState({
         studentId: res.data.result.data.studentId,
         name: res.data.result.data.name,
@@ -100,7 +143,6 @@ export default class BaseCtrl extends Component {
   delete(item, id) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/delete/` + id;
     axios.get(url).then((res) => {
-      console.log(res);
       if (res.data.success) {
         this.setState({
           message: `${item} Id No. ${id} Deleted`,
@@ -115,28 +157,35 @@ export default class BaseCtrl extends Component {
     });
   }
 
-  reset() {
-    this.setState({
-      name: "",
-      phoneNo: "",
-      address: "",
-      loginId: "",
-      password: "",
-      city: "",
-      state: "",
-      studentId: "",
-      chemistry: "",
-      maths: "",
-      physics: "",
-      discription: "",
-      lastName: "",
-      firstName: "",
-      collegeId: "",
-      mobileNo: "",
-      email: "",
-      collegeName: "",
-      rollNo: "",
-      roleId: "",
-    });
+  reset(item) {
+    if (this.props.match.params.pid) {
+      this.edit(item);
+      this.setState({ message: `Input Feilds Reset`, txtClr: "success" });
+    } else {
+      this.setState({
+        name: "",
+        phoneNo: "",
+        address: "",
+        loginId: "",
+        password: "",
+        city: "",
+        state: "",
+        studentId: "",
+        chemistry: "",
+        maths: "",
+        physics: "",
+        discription: "",
+        lastName: "",
+        firstName: "",
+        collegeId: "",
+        mobileNo: "",
+        email: "",
+        collegeName: "",
+        rollNo: "",
+        roleId: "",
+        message: `Input Feilds Reset`,
+        txtClr: "success",
+      });
+    }
   }
 }

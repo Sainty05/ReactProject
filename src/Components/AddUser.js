@@ -11,22 +11,22 @@ export default class AddUser extends BaseCtrl {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="container w-50">
           <h1 className="text-center mb-3">
             {this.props.match.params.pid ? "Update User" : "Add User"}
           </h1>
-          <table className="table table-striped table-warning align-middle">
+          <table className="table table-striped-columns table-sm table-warning align-middle">
             <tbody>
               <tr>
                 <td
-                  colSpan="2"
-                  className={`text-${this.state.txtClr} text-center`}
+                  colSpan="3"
+                  className={`text-${this.state.txtClr} text-center txtHgt`}
                 >
                   {this.state.message}
                 </td>
               </tr>
               <tr>
-                <td>First Name: </td>
+                <th className="px-3">First Name: </th>
                 <td>
                   <input
                     type="text"
@@ -36,9 +36,10 @@ export default class AddUser extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
+                <td className="text-danger">{this.state.inputError.firstName}</td>
               </tr>
               <tr>
-                <td>Last Name: </td>
+                <th className="px-3">Last Name: </th>
                 <td>
                   <input
                     type="text"
@@ -48,9 +49,10 @@ export default class AddUser extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
+                <td className="text-danger">{this.state.inputError.lastName}</td>
               </tr>
               <tr>
-                <td>Login Id: </td>
+                <th className="px-3">Login Id: </th>
                 <td>
                   <input
                     type="email"
@@ -60,9 +62,10 @@ export default class AddUser extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
+                <td className="text-danger">{this.state.inputError.loginId}</td>
               </tr>
               <tr>
-                <td>Password: </td>
+                <th className="px-3">Password: </th>
                 <td>
                   <input
                     type="text"
@@ -72,9 +75,10 @@ export default class AddUser extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
+                <td className="text-danger">{this.state.inputError.password}</td>
               </tr>
               <tr>
-                <td>Role Id: </td>
+                <th className="px-3">Role Id: </th>
                 <td>
                   <input
                     type="number"
@@ -84,9 +88,10 @@ export default class AddUser extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
+                <td className="text-danger">{this.state.inputError.roleId}</td>
               </tr>
               <tr>
-                <td colSpan="2">
+                <td colSpan="3" className="text-center">
                   <button
                     className="myBtn"
                     onClick={(ev) => this.save("User", ev)}
@@ -96,8 +101,8 @@ export default class AddUser extends BaseCtrl {
                 </td>
               </tr>
               <tr>
-                <td colSpan="2">
-                  <button className="myBtn" onClick={(ev) => this.reset(ev)}>
+                <td colSpan="3" className="text-center">
+                  <button className="myBtn" onClick={(ev) => this.reset("User")}>
                     Reset
                   </button>
                 </td>

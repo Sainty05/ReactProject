@@ -13,22 +13,22 @@ export default class AddCollege extends BaseCtrl {
   render() {
     return (
       <div className="App">
-      <div className="container">
+      <div className="container w-50">
         <h1 className="text-center mb-3">
           {this.props.match.params.pid ? "Update College" : "Add College"}
         </h1>
-        <table className="table table-striped table-warning align-middle">
+        <table className="table table-striped-columns table-sm table-warning align-middle">
           <tbody>
             <tr>
               <td
-                colSpan="2"
-                className={`text-${this.state.txtClr} text-center`}
+                colSpan="3"
+                className={`text-${this.state.txtClr} text-center txtHgt`}
               >
                 {this.state.message}
               </td>
             </tr>
             <tr>
-              <td>Name: </td>
+              <th className="px-3">Name: </th>
               <td>
                 <input
                   type="text"
@@ -38,9 +38,10 @@ export default class AddCollege extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.name}</td>
             </tr>
             <tr>
-              <td>Address: </td>
+              <th className="px-3">Address: </th>
               <td>
                 <input
                   type="text"
@@ -50,9 +51,10 @@ export default class AddCollege extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.address}</td>
             </tr>
             <tr>
-              <td>City: </td>
+              <th className="px-3">City: </th>
               <td>
                 <input
                   type="text"
@@ -62,9 +64,10 @@ export default class AddCollege extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.city}</td>
             </tr>
             <tr>
-              <td>State: </td>
+              <th className="px-3">State: </th>
               <td>
                 <input
                   type="email"
@@ -74,9 +77,10 @@ export default class AddCollege extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.state}</td>
             </tr>
             <tr>
-              <td>Contact No: </td>
+              <th className="px-3">Contact No: </th>
               <td>
                 <input
                   type="text"
@@ -86,9 +90,10 @@ export default class AddCollege extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.phoneNo}</td>
             </tr>
             <tr>
-              <td colSpan="2">
+              <td colSpan="3" className="text-center">
                 <button
                   className="myBtn"
                   onClick={(ev) => this.save("College", ev)}
@@ -100,8 +105,8 @@ export default class AddCollege extends BaseCtrl {
               </td>
             </tr>
             <tr>
-              <td colSpan="2">
-                <button className="myBtn" onClick={(ev) => this.reset(ev)}>
+              <td colSpan="3" className="text-center">
+                <button className="myBtn" onClick={(ev) => this.reset("College")}>
                   Reset
                 </button>
               </td>

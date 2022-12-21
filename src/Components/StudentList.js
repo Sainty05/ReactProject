@@ -17,17 +17,17 @@ export default class StudentList extends BaseCtrl {
         <h6 colSpan="2" className={`text-${this.state.txtClr} text-center`}>
           {this.state.message}
         </h6>
-        <Table striped bordered hover responsive variant="dark">
+        <Table striped bordered hover responsive variant="dark" size="sm">
           <thead>
             <tr>
-              <th>Index</th>
-              <th>ID</th>
-              <th>Full Name</th>
-              <th>Registration Date</th>
-              <th>Contact No.</th>
-              <th>Email</th>
-              <th>College Id</th>
-              <th>College Name</th>
+              <th className="text-center">Index</th>
+              <th className="text-center">ID</th>
+              <th className="text-center">Full Name</th>
+              <th className="text-center">Registration Date</th>
+              <th className="text-center">Contact No.</th>
+              <th className="text-center">Email</th>
+              <th className="text-center">College Id</th>
+              <th className="text-center">College Name</th>
               <th className="text-center" colSpan={2}>
                 Action
               </th>
@@ -36,14 +36,14 @@ export default class StudentList extends BaseCtrl {
           <tbody>
             {this.state.list.map((ele, index) => (
               <tr>
-                <td>{index + 1}</td>
-                <td>{ele.id}</td>
-                <td>{ele.firstName + " " + ele.lastName}</td>
-                <td>{new Date(ele.createdDatetime).toDateString()}</td>
-                <td>{ele.mobileNo}</td>
-                <td>{ele.email}</td>
-                <td>{ele.collegeId}</td>
-                <td>{ele.collegeName}</td>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{ele.id}</td>
+                <td className="text-center">{ele.firstName + " " + ele.lastName}</td>
+                <td className="text-center">{new Date(ele.createdDatetime).toDateString()}</td>
+                <td className="text-center">{ele.mobileNo}</td>
+                <td className="text-center">{ele.email}</td>
+                <td className="text-center">{ele.collegeId}</td>
+                <td className="text-center">{ele.collegeName}</td>
                 <td className="text-center">
                   <Link to={"/Student/" + ele.id} className="btn btn-dark">
                     Edit

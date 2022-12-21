@@ -10,22 +10,22 @@ export default class AddStudent extends BaseCtrl {
   }
   render() {
     return (
-      <div className="container">
+      <div className="container w-50">
         <h1 className="text-center mb-3">
           {this.props.match.params.pid ? "Update Student" : "Add Student"}
         </h1>
-        <table className="table table-striped table-warning align-middle">
+        <table className="table table-striped-columns table-sm table-warning align-middle">
           <tbody>
             <tr>
               <td
-                colSpan="2"
-                className={`text-${this.state.txtClr} text-center`}
+                colSpan="3"
+                className={`text-${this.state.txtClr} text-center txtHgt`}
               >
                 {this.state.message}
               </td>
             </tr>
             <tr>
-              <td>First Name: </td>
+              <th className="px-3">First Name: </th>
               <td>
                 <input
                   type="text"
@@ -35,9 +35,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.firstName}</td>
             </tr>
             <tr>
-              <td>Last Name: </td>
+              <th className="px-3">Last Name: </th>
               <td>
                 <input
                   type="text"
@@ -47,9 +48,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.lastName}</td>
             </tr>
             <tr>
-              <td>College ID: </td>
+              <th className="px-3">College ID: </th>
               <td>
                 <input
                   type="text"
@@ -59,9 +61,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.collegeId}</td>
             </tr>
             <tr>
-              <td>College Name: </td>
+              <th className="px-3">College Name: </th>
               <td>
                 <input
                   type="text"
@@ -71,9 +74,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.collegeName}</td>
             </tr>
             <tr>
-              <td>Contact No: </td>
+              <th className="px-3">Contact No: </th>
               <td>
                 <input
                   type="text"
@@ -83,9 +87,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.mobileNo}</td>
             </tr>
             <tr>
-              <td>Email ID: </td>
+              <th className="px-3">Email ID: </th>
               <td>
                 <input
                   type="text"
@@ -95,9 +100,10 @@ export default class AddStudent extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.email}</td>
             </tr>
             <tr>
-              <td colSpan="2">
+              <td colSpan="3" className="text-center">
                 <button
                   className="myBtn"
                   onClick={(ev) => this.save("Student", ev)}
@@ -109,8 +115,8 @@ export default class AddStudent extends BaseCtrl {
               </td>
             </tr>
             <tr>
-              <td colSpan="2">
-                <button className="myBtn" onClick={(ev) => this.reset(ev)}>
+              <td colSpan="3" className="text-center">
+                <button className="myBtn" onClick={(ev) => this.reset("Student")}>
                   Reset
                 </button>
               </td>

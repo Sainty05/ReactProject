@@ -17,16 +17,16 @@ export default class collegeList extends BaseCtrl {
         <h6 colSpan="2" className={`text-${this.state.txtClr} text-center`}>
           {this.state.message}
         </h6>
-        <Table striped bordered hover responsive variant="dark">
+        <Table striped bordered hover responsive variant="dark" size="sm">
           <thead>
             <tr>
-              <th>Index</th>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Contact Number</th>
+              <th className="text-center">Index</th>
+              <th className="text-center">ID</th>
+              <th className="text-center">Name</th>
+              <th className="text-center">Address</th>
+              <th className="text-center">City</th>
+              <th className="text-center">State</th>
+              <th className="text-center">Contact Number</th>
               <th className="text-center" colSpan={2}>
                 Action
               </th>
@@ -35,13 +35,13 @@ export default class collegeList extends BaseCtrl {
           <tbody>
             {this.state.list.map((ele, index) => (
               <tr>
-                <td>{index + 1}</td>
-                <td>{ele.id}</td>
-                <td>{ele.name}</td>
-                <td>{ele.address}</td>
-                <td>{ele.city}</td>
-                <td>{ele.state}</td>
-                <td>{ele.phoneNo}</td>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{ele.id}</td>
+                <td className="text-center">{ele.name}</td>
+                <td className="text-center">{ele.address}</td>
+                <td className="text-center">{ele.city}</td>
+                <td className="text-center">{ele.state}</td>
+                <td className="text-center">{ele.phoneNo}</td>
                 <td className="text-center">
                 <Link to={"/College/" + ele.id} className="btn btn-dark">
                     Edit

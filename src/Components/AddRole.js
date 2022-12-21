@@ -11,22 +11,22 @@ export default class AddRole extends BaseCtrl {
 
   render() {
     return (
-      <div className="container">
+      <div className="container w-50">
         <h1 className="text-center mb-3">
           {this.props.match.params.pid ? "Update Role" : "Add Role"}
         </h1>
-        <table className="table table-striped table-warning align-middle">
+        <table className="table table-striped-columns table-sm table-warning align-middle">
           <tbody>
             <tr>
               <td
-                colSpan="2"
-                className={`text-${this.state.txtClr} text-center`}
+                colSpan="3"
+                className={`text-${this.state.txtClr} text-center txtHgt`}
               >
                 {this.state.message}
               </td>
             </tr>
             <tr>
-              <td>Discription: </td>
+              <th className="px-3">Discription: </th>
               <td>
                 <input
                   type="text"
@@ -36,9 +36,10 @@ export default class AddRole extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.discription}</td>
             </tr>
             <tr>
-              <td>Name: </td>
+              <th className="px-3">Name: </th>
               <td>
                 <input
                   type="text"
@@ -48,9 +49,10 @@ export default class AddRole extends BaseCtrl {
                   onChange={(ev) => this.changeState(ev)}
                 />
               </td>
+              <td className="text-danger">{this.state.inputError.name}</td>
             </tr>
             <tr>
-              <td colSpan="2">
+              <td colSpan="3" className="text-center">
                 <button
                   className="myBtn"
                   onClick={(ev) => this.save("Role", ev)}
@@ -60,8 +62,8 @@ export default class AddRole extends BaseCtrl {
               </td>
             </tr>
             <tr>
-              <td colSpan="2">
-                <button className="myBtn" onClick={(ev) => this.reset(ev)}>
+              <td colSpan="3" className="text-center">
+                <button className="myBtn" onClick={() => this.reset("Role")}>
                   Reset
                 </button>
               </td>

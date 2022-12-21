@@ -17,18 +17,18 @@ export default class UserList extends BaseCtrl {
         <h6 colSpan="2" className={`text-${this.state.txtClr} text-center`}>
           {this.state.message}
         </h6>
-        <Table striped bordered hover responsive variant="dark">
+        <Table striped bordered hover responsive variant="dark" size="sm">
           <thead>
             <tr>
-              <th>Index</th>
-              <th>ID</th>
-              <th>Role Id</th>
-              <th>Full Name</th>
-              <th>Login Id</th>
-              <th>Password</th>
-              <th>Last Login</th>
-              <th>Creation Date</th>
-              <th>Modification Date</th>
+              <th className="text-center">Index</th>
+              <th className="text-center">ID</th>
+              <th className="text-center">Role Id</th>
+              <th className="text-center">Full Name</th>
+              <th className="text-center">Login Id</th>
+              <th className="text-center">Password</th>
+              <th className="text-center">Last Login</th>
+              <th className="text-center">Creation Date</th>
+              <th className="text-center">Modification Date</th>
               <th className="text-center" colSpan={2}>
                 Action
               </th>
@@ -37,15 +37,15 @@ export default class UserList extends BaseCtrl {
           <tbody>
             {this.state.list.map((ele, index) => (
               <tr>
-                <td>{index + 1}</td>
-                <td>{ele.id}</td>
-                <td>{ele.roleId}</td>
-                <td>{ele.firstName + " " + ele.lastName}</td>
-                <td>{ele.loginId}</td>
-                <td>{ele.password}</td>
-                <td>{new Date(ele.lastLogin).toLocaleString()}</td>
-                <td>{new Date(ele.createdDatetime).toDateString()}</td>
-                <td>{new Date(ele.modifiedDatetime).toDateString()}</td>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{ele.id}</td>
+                <td className="text-center">{ele.roleId}</td>
+                <td className="text-center">{ele.firstName + " " + ele.lastName}</td>
+                <td className="text-center">{ele.loginId}</td>
+                <td className="text-center">{ele.password}</td>
+                <td className="text-center">{new Date(ele.lastLogin).toLocaleString()}</td>
+                <td className="text-center">{new Date(ele.createdDatetime).toDateString()}</td>
+                <td className="text-center">{new Date(ele.modifiedDatetime).toDateString()}</td>
                 <td className="text-center">
                   <Link to={"/User/" + ele.id} className="btn btn-dark">
                     Edit

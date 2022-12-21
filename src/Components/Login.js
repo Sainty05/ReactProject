@@ -58,15 +58,15 @@ export default class Login extends BaseCtrl {
         <div className="bg-color">
           <div className="container w-50">
             <h1 className="text-center mb-3">Login</h1>
-            <table className="table table-striped table-danger align-middle">
+            <table className="table table-striped-columns table-sm table-light align-middle">
               <tbody>
                 <tr>
-                  <td colSpan="2" className="text-danger text-center txtHgt">
+                  <td colSpan="3" className="text-danger text-center txtHgt">
                     {this.state.message}
                   </td>
                 </tr>
                 <tr>
-                  <th> Login Id: </th>
+                  <th className="px-3"> Login Id: </th>
                   <td>
                     <input
                       type="email"
@@ -75,9 +75,10 @@ export default class Login extends BaseCtrl {
                       onChange={(ev) => this.changeState(ev)}
                     />
                   </td>
+                  <td className="text-danger">{this.state.inputError.loginId}</td>
                 </tr>
                 <tr>
-                  <th>Password: </th>
+                  <th className="px-3">Password: </th>
                   <td>
                     <input
                       type="password"
@@ -86,16 +87,17 @@ export default class Login extends BaseCtrl {
                       onChange={(ev) => this.changeState(ev)}
                     />
                   </td>
+                  <td className="text-danger">{this.state.inputError.password}</td>
                 </tr>
                 <tr>
-                  <td colSpan="2" className="text-center">
+                  <td colSpan="3" className="text-center">
                     <button className="myBtn" onClick={() => this.signIn()}>
                       Login
                     </button>
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan="2" className="text-center">
+                  <td colSpan="3" className="text-center">
                     <button className="myBtn" onClick={() => this.openReg()}>
                       Registration
                     </button>

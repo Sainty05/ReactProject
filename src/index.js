@@ -6,8 +6,8 @@ import Login from "./Components/Login";
 
 ReactDOM.render(
   <React.StrictMode>
-      <Login />
-      <Footer />
+    <Login />
+    <Footer />
   </React.StrictMode>,
   document.getElementById("root")
 );
