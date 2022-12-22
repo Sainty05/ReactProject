@@ -52,8 +52,8 @@ export default class AddMarksheet extends BaseCtrl {
                 <td className="text-danger">{this.state.inputError.name}</td>
               </tr>
               <tr>
-                <th className="px-3 w-25">Chemistry: </th>
-                <td className="w-50">
+                <th className="px-3">Chemistry: </th>
+                <td>
                   <input
                     type="number"
                     className="form-control"

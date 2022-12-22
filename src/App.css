@@ -20,6 +20,8 @@
   padding: 5px 20px;
   cursor: pointer;
   font-size: large;
+  text-decoration: none;
+  color: black;
 }
 
 .myBtn:hover {

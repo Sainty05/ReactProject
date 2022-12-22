@@ -1,61 +1,23 @@
 import React from "react";
-import axios from "axios";
-import Login from "./Login";
-import ReactDOM from "react-dom";
-import logo from "../Assests/Logo.jpg";
+import { Link } from "react-router-dom";
 import BaseCtrl from "../BaseCtrl";
-import Footer from "./Footer";
 
 export default class Registration extends BaseCtrl {
-  registered() {
-    let url = "http://api.sunilos.com:9080/ORSP10/User/save";
-    axios.post(url, this.state).then((res) => {
-      this.setState({ list: res.data.result.data });
-      if (res.data.success) {
-        console.log("Heloooooooooooooooooooooooooooo");
-        ReactDOM.render(
-          <React.StrictMode>
-            <Login />
-          </React.StrictMode>,
-          document.getElementById("root")
-        );
-        this.setState({ message: "Data saved Successfully" });
-      } else {
-        this.setState({
-          inputError: {
-            firstName: res.data.result.inputerror.firstName,
-            lastName: res.data.result.inputerror.lastName,
-            loginId: res.data.result.inputerror.loginId,
-            password: res.data.result.inputerror.password,
-            roleId: res.data.result.inputerror.roleId,
-          },
-        });
-        if (res.data.result.message == null && this.state.roleId !== "") {
-          this.setState({ message: "Role ID Incorrect" });
-        }
-
-        if (!res.data.result.message == null) {
-          this.setState({ message: res.data.result.message });
-        }
-      }
-    });
-  }
+  constructor(){
+  super()
+  this.search("Role") 
+}
 
   render() {
     return (
       <div>
-        <nav className="Navbar">
-          <div>
-            <img src={logo} alt="Rays Logo" />
-          </div>
-        </nav>
         <div className="bg-color">
           <div className="container w-50">
             <h1 className="text-center mb-3">Registration</h1>
             <table className="table table-striped-columns table-sm table-danger align-middle">
               <tbody>
                 <tr>
-                  <td colSpan="3" className="text-danger text-center txtHgt">
+                  <td colSpan="3" className={`text-${this.state.txtClr} text-center txtHgt`}>
                     {this.state.message}
                   </td>
                 </tr>
@@ -118,12 +80,13 @@ export default class Registration extends BaseCtrl {
                 <tr>
                   <th className="px-3">Role Id: </th>
                   <td>
-                    <input
-                      type="number"
-                      className="form-control"
-                      name="roleId"
-                      onChange={(ev) => this.changeState(ev)}
-                    />
+                    <select name="roleId" placeholder="Select Role Id" className="form-control" onChange=
+                    {(ev) => this.changeState(ev)}>
+                    <option name="roleId">-- Select Role Id --</option>
+                    { this.state.searchList.map((ele)=>
+                      <option name="roleId" value={ele.id}>{ele.id}</option>
+                      )}
+                    </select>
                   </td>
                   <td className="text-danger">
                     {this.state.inputError.roleId}
@@ -131,34 +94,32 @@ export default class Registration extends BaseCtrl {
                 </tr>
                 <tr>
                   <td colSpan="3" className="text-center">
-                    <button className="myBtn" onClick={() => this.registered()}>
+                    <button
+                      className="myBtn"
+                      onClick={(ev) => this.save("User", ev)}
+                    >
                       Register
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td colSpan="3" className="text-center">
-                    <button className="myBtn" onClick={(ev) => this.reset(ev)}>
+                    <button
+                      className="myBtn"
+                      onClick={(ev) => this.reset("User")}
+                    >
                       Reset
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td colSpan="3" className="text-center">
-                    <button
-                      onClick={() => {
-                        ReactDOM.render(
-                          <React.StrictMode>
-                            <Login />
-                            <Footer />
-                          </React.StrictMode>,
-                          document.getElementById("root")
-                        );
-                      }}
+                    <Link
+                      to='/login'
                       className="btn btn-link text-decoration-none"
                     >
                       Already a User <strong>Login</strong> here
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               </tbody>

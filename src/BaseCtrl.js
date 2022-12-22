@@ -28,6 +28,7 @@ export default class BaseCtrl extends Component {
       message: "",
       txtClr: "",
       list: [],
+      searchList: [],
       inputError: {
         rollNo: "",
         name: "",
@@ -49,6 +50,7 @@ export default class BaseCtrl extends Component {
         email: "",
         collegeName: "",
         roleId: "",
+        message: "",
       },
     };
   }
@@ -62,7 +64,7 @@ export default class BaseCtrl extends Component {
   search(item) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/search`;
     axios.post(url, this.state).then((res) => {
-      this.setState({ list: res.data.result.data });
+      this.setState({ searchList: res.data.result.data });
     });
   }
 
@@ -72,41 +74,75 @@ export default class BaseCtrl extends Component {
     axios.post(url, this.state).then((res) => {
       this.setState({ list: res.data.result.data });
       if (res.data.success) {
-        this.setState({
-          message: `${item} ${
-            this.props.match.params.pid ? "Updated" : "Added"
-          } Successfully`,
-          txtClr: "success",
-        });
+        if (localStorage.token) {
+          this.setState({
+            message: `${item} ${
+              this.props.match.params.pid ? "Updated" : "Added"
+            } Successfully`,
+            txtClr: "success",
+            inputError: {
+              rollNo: "",
+              name: "",
+              phoneNo: "",
+              address: "",
+              loginId: "",
+              password: "",
+              city: "",
+              state: "",
+              studentId: "",
+              chemistry: "",
+              maths: "",
+              physics: "",
+              discription: "",
+              lastName: "",
+              firstName: "",
+              collegeId: "",
+              mobileNo: "",
+              email: "",
+              collegeName: "",
+              roleId: "",
+              message: "",
+            },
+          });
+        } else {
+          window.location.href = "/login";
+        }
       } else {
-        this.setState({
-          inputError: {
-            studentId: res.data.result.inputerror.studentId,
-            chemistry: res.data.result.inputerror.chemistry,
-            maths: res.data.result.inputerror.maths,
-            physics: res.data.result.inputerror.physics,
-            rollNo: res.data.result.inputerror.rollNo,
-            name: res.data.result.inputerror.name,
-            phoneNo: res.data.result.inputerror.phoneNo,
-            address: res.data.result.inputerror.address,
-            loginId: res.data.result.inputerror.loginId,
-            password: res.data.result.inputerror.password,
-            city: res.data.result.inputerror.city,
-            state: res.data.result.inputerror.state,
-            discription: res.data.result.inputerror.discription,
-            lastName: res.data.result.inputerror.lastName,
-            firstName: res.data.result.inputerror.firstName,
-            collegeId: res.data.result.inputerror.collegeId,
-            mobileNo: res.data.result.inputerror.mobileNo,
-            email: res.data.result.inputerror.email,
-            collegeName: res.data.result.inputerror.collegeId,
-            roleId: res.data.result.inputerror.roleId,
-          },
-          message: `${item} didn't ${
-            this.props.match.params.pid ? "Updated" : "Added"
-          }`,
-          txtClr: "danger",
-        });
+        if (res.data.result.message === undefined) {
+          this.setState({
+            inputError: {
+              roleId: res.data.result.inputerror.roleId,
+              loginId: res.data.result.inputerror.loginId,
+              password: res.data.result.inputerror.password,
+              studentId: res.data.result.inputerror.studentId,
+              chemistry: res.data.result.inputerror.chemistry,
+              maths: res.data.result.inputerror.maths,
+              physics: res.data.result.inputerror.physics,
+              rollNo: res.data.result.inputerror.rollNo,
+              name: res.data.result.inputerror.name,
+              phoneNo: res.data.result.inputerror.phoneNo,
+              address: res.data.result.inputerror.address,
+              city: res.data.result.inputerror.city,
+              state: res.data.result.inputerror.state,
+              discription: res.data.result.inputerror.discription,
+              lastName: res.data.result.inputerror.lastName,
+              firstName: res.data.result.inputerror.firstName,
+              collegeId: res.data.result.inputerror.collegeId,
+              mobileNo: res.data.result.inputerror.mobileNo,
+              email: res.data.result.inputerror.email,
+              collegeName: res.data.result.inputerror.collegeId,
+            },
+            message: "",
+          });
+        } else {
+          this.setState({
+            message: res.data.result.message,
+            inputError: {
+              loginId: "",
+              password: "",
+            },
+          });
+        }
       }
     });
   }
@@ -161,7 +197,8 @@ export default class BaseCtrl extends Component {
     if (this.props.match.params.pid) {
       this.edit(item);
       this.setState({ message: `Input Feilds Reset`, txtClr: "success" });
-    } else {
+    }
+    if (!this.props.match.params.pid) {
       this.setState({
         name: "",
         phoneNo: "",
@@ -183,9 +220,32 @@ export default class BaseCtrl extends Component {
         collegeName: "",
         rollNo: "",
         roleId: "",
-        message: `Input Feilds Reset`,
-        txtClr: "success",
       });
     }
+    this.setState({
+      inputError: {
+        rollNo: "",
+        name: "",
+        phoneNo: "",
+        address: "",
+        loginId: "",
+        password: "",
+        city: "",
+        state: "",
+        studentId: "",
+        chemistry: "",
+        maths: "",
+        physics: "",
+        discription: "",
+        lastName: "",
+        firstName: "",
+        collegeId: "",
+        mobileNo: "",
+        email: "",
+        collegeName: "",
+        roleId: "",
+        message: "",
+      },
+    });
   }
 }

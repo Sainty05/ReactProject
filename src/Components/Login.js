@@ -1,60 +1,41 @@
 import React from "react";
 import "../App.css";
 import axios from "axios";
-import ReactDOM from "react-dom";
-import App from "../App";
-import Registration from "./Registration";
-import logo from "../Assests/Logo.jpg";
-import Footer from "./Footer";
 import BaseCtrl from "../BaseCtrl";
+import { Link } from "react-router-dom";
 
 export default class Login extends BaseCtrl {
   signIn(props) {
-    if (this.state.loginId === "" || this.state.password === "") {
-      if (this.state.loginId === "") {
-        this.setState({ message: "Enter Login Id" });
-      }
-      if (this.state.password === "") {
-        this.setState({ message: "Enter Password" });
-      }
-      if (this.state.loginId === "" && this.state.password === "") {
-        this.setState({ message: "Enter Login Id & Password" });
-      }
-    } else {
-      let url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
-      axios.post(url, this.state).then((res) => {
-        if (res.data.success) {
-          ReactDOM.render(
-            <React.StrictMode>
-              <App Admin={res.data.result.data} />
-            </React.StrictMode>,
-            document.getElementById("root")
-          );
+    let url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
+    axios.post(url, this.state).then((res) => {
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.result.data.firstName);
+        window.location.href = "/";
+      } else {
+        if (res.data.result.message === undefined) {
+          this.setState({
+            inputError: {
+              loginId: res.data.result.inputerror.loginId,
+              password: res.data.result.inputerror.password,
+            },
+            message: "",
+          });
         } else {
-          this.setState({ message: "Invalid LoginId & Password" });
+          this.setState({
+            message: res.data.result.message,
+            inputError: {
+              loginId: "",
+              password: "",
+            },
+          });
         }
-      });
-    }
-  }
-
-  openReg() {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Registration />
-        <Footer />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
+      }
+    });
   }
 
   render() {
     return (
       <div>
-        <nav className="Navbar">
-          <div>
-            <img src={logo} alt="Rays Logo" />
-          </div>
-        </nav>
         <div className="bg-color">
           <div className="container w-50">
             <h1 className="text-center mb-3">Login</h1>
@@ -75,7 +56,9 @@ export default class Login extends BaseCtrl {
                       onChange={(ev) => this.changeState(ev)}
                     />
                   </td>
-                  <td className="text-danger">{this.state.inputError.loginId}</td>
+                  <td className="text-danger">
+                    {this.state.inputError.loginId}
+                  </td>
                 </tr>
                 <tr>
                   <th className="px-3">Password: </th>
@@ -87,7 +70,9 @@ export default class Login extends BaseCtrl {
                       onChange={(ev) => this.changeState(ev)}
                     />
                   </td>
-                  <td className="text-danger">{this.state.inputError.password}</td>
+                  <td className="text-danger">
+                    {this.state.inputError.password}
+                  </td>
                 </tr>
                 <tr>
                   <td colSpan="3" className="text-center">
@@ -98,9 +83,12 @@ export default class Login extends BaseCtrl {
                 </tr>
                 <tr>
                   <td colSpan="3" className="text-center">
-                    <button className="myBtn" onClick={() => this.openReg()}>
-                      Registration
-                    </button>
+                    <Link
+                      to='/Registration'
+                      className="btn btn-link text-decoration-none"
+                    >
+                      Not a User <strong>Register</strong> here
+                    </Link>
                   </td>
                 </tr>
               </tbody>

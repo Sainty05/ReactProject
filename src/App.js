@@ -11,16 +11,19 @@ import AddCollege from "./Components/AddCollege";
 import AddRole from "./Components/AddRole";
 import AddStudent from "./Components/AddStudent";
 import AddUser from "./Components/AddUser";
-import MyProfile from "./Components/MyProfile";
 import CollegeList from "./Components/CollegeList";
+import Login from "./Components/Login";
+import Registration from "./Components/Registration";
 
 function App(props) {
   return (
     <div className="App">
       <Router>
-        <Navbar Admin={props.Admin} />
+        <Navbar/>
         <div className="bg-color">
           <Switch>
+            <Route path="/login"><Login/></Route>
+            <Route path="/registration" component={Registration} />
             <Route path="/MarksheetList" component={MarksheetList} />
             <Route path="/UserList" component={UserList} />
             <Route path="/StudentList" component={StudentList} />
@@ -36,9 +39,6 @@ function App(props) {
             <Route path="/AddCollege" component={AddCollege} />
             <Route path="/AddStudent" component={AddStudent} />
             <Route path="/AddUser" component={AddUser} />
-            <Route path="/MyProfile">
-              <MyProfile Admin={props.Admin} />
-            </Route>
             <Route exact path="/">
               <div className="app"></div>
             </Route>

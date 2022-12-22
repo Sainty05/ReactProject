@@ -33,7 +33,7 @@ export default class collegeList extends BaseCtrl {
             </tr>
           </thead>
           <tbody>
-            {this.state.list.map((ele, index) => (
+            {this.state.searchList.map((ele, index) => (
               <tr>
                 <td className="text-center">{index + 1}</td>
                 <td className="text-center">{ele.id}</td>
