@@ -45,10 +45,6 @@ export default class RoleList extends BaseCtrl {
                 <th className="text-center">Index</th>
                 <th className="text-center">ID</th>
                 <th className="text-center">Name</th>
-                <th className="text-center">Created By</th>
-                <th className="text-center">Creation Date</th>
-                <th className="text-center">Modified By</th>
-                <th className="text-center">Modification Date</th>
                 <th className="text-center">Description</th>
                 <th className="text-center">Status</th>
                 <th className="text-center" colSpan={2}>
@@ -62,14 +58,6 @@ export default class RoleList extends BaseCtrl {
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">{ele.id}</td>
                   <td className="text-center">{ele.name}</td>
-                  <td className="text-center">{ele.createdBy}</td>
-                  <td className="text-center">
-                    {new Date(ele.createdDatetime).toDateString()}
-                  </td>
-                  <td className="text-center">{ele.modifiedBy}</td>
-                  <td className="text-center">
-                    {new Date(ele.modifiedDatetime).toDateString()}
-                  </td>
                   <td className="text-center">{ele.discription}</td>
                   <td className="text-center">{ele.status}</td>
                   <td className="text-center">

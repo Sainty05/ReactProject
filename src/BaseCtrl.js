@@ -80,69 +80,22 @@ export default class BaseCtrl extends Component {
               this.props.match.params.pid ? "Updated" : "Added"
             } Successfully`,
             txtClr: "success",
-            inputError: {
-              rollNo: "",
-              name: "",
-              phoneNo: "",
-              address: "",
-              loginId: "",
-              password: "",
-              city: "",
-              state: "",
-              studentId: "",
-              chemistry: "",
-              maths: "",
-              physics: "",
-              discription: "",
-              lastName: "",
-              firstName: "",
-              collegeId: "",
-              mobileNo: "",
-              email: "",
-              collegeName: "",
-              roleId: "",
-              message: "",
-            },
+            inputError: "",
           });
         } else {
           window.location.href = "/login";
         }
       } else {
         if (res.data.result.message === undefined) {
-          let inputerror = res.data.result.inputerror;
           this.setState({
-            inputError: {
-              roleId: inputerror.roleId,
-              loginId: inputerror.loginId,
-              password: inputerror.password,
-              studentId: inputerror.studentId,
-              chemistry: inputerror.chemistry,
-              maths: inputerror.maths,
-              physics: inputerror.physics,
-              rollNo: inputerror.rollNo,
-              name: inputerror.name,
-              phoneNo: inputerror.phoneNo,
-              address: inputerror.address,
-              city: inputerror.city,
-              state: inputerror.state,
-              discription: inputerror.discription,
-              lastName: inputerror.lastName,
-              firstName: inputerror.firstName,
-              collegeId: inputerror.collegeId,
-              mobileNo: inputerror.mobileNo,
-              email: inputerror.email,
-              collegeName: inputerror.collegeId,
-            },
+            inputError: res.data.result.inputerror,
             message: "",
             txtClr: "danger",
           });
         } else {
           this.setState({
             message: res.data.result.message,
-            inputError: {
-              loginId: "",
-              password: "",
-            },
+            inputError: "",
             txtClr: "danger",
           });
         }
@@ -230,29 +183,7 @@ export default class BaseCtrl extends Component {
       });
     }
     this.setState({
-      inputError: {
-        rollNo: "",
-        name: "",
-        phoneNo: "",
-        address: "",
-        loginId: "",
-        password: "",
-        city: "",
-        state: "",
-        studentId: "",
-        chemistry: "",
-        maths: "",
-        physics: "",
-        discription: "",
-        lastName: "",
-        firstName: "",
-        collegeId: "",
-        mobileNo: "",
-        email: "",
-        collegeName: "",
-        roleId: "",
-        message: "",
-      },
+      inputError: "",
     });
   }
 }

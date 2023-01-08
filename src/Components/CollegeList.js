@@ -31,17 +31,6 @@ export default class collegeList extends BaseCtrl {
               </div>
             </div>
             <div className="col-12">
-              <div className="input-group">
-                <input
-                  type="text"
-                  name="address"
-                  className="form-control"
-                  placeholder="Type your Address"
-                  onChange={(ev) => this.changeState(ev)}
-                />
-              </div>
-            </div>
-            <div className="col-12">
               <button
                 className="btn btn-dark"
                 onClick={(ev) => this.search("College")}

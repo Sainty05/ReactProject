@@ -55,12 +55,12 @@ export default class StudentList extends BaseCtrl {
               <tr>
                 <th className="text-center">Index</th>
                 <th className="text-center">ID</th>
-                <th className="text-center">Full Name</th>
-                <th className="text-center">Registration Date</th>
+                <th className="text-center">College Id</th>
+                <th className="text-center">First Name</th>
+                <th className="text-center">Last Name</th>
                 <th className="text-center">Contact No.</th>
                 <th className="text-center">Email</th>
-                <th className="text-center">College Id</th>
-                <th className="text-center">College Name</th>
+                <th className="text-center">Registration Date</th>
                 <th className="text-center" colSpan={2}>
                   Action
                 </th>
@@ -71,16 +71,14 @@ export default class StudentList extends BaseCtrl {
                 <tr>
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">{ele.id}</td>
-                  <td className="text-center">
-                    {ele.firstName + " " + ele.lastName}
-                  </td>
+                  <td className="text-center">{ele.collegeId}</td>
+                  <td className="text-center">{ele.firstName}</td>
+                  <td className="text-center">{ele.lastName}</td>
+                  <td className="text-center">{ele.mobileNo}</td>
+                  <td className="text-center">{ele.email}</td>
                   <td className="text-center">
                     {new Date(ele.createdDatetime).toDateString()}
                   </td>
-                  <td className="text-center">{ele.mobileNo}</td>
-                  <td className="text-center">{ele.email}</td>
-                  <td className="text-center">{ele.collegeId}</td>
-                  <td className="text-center">{ele.collegeName}</td>
                   <td className="text-center">
                     <Link to={"/Student/" + ele.id} className="btn btn-light">
                       <svg
