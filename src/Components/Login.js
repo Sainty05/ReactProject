@@ -5,7 +5,7 @@ import BaseCtrl from "../BaseCtrl";
 import { Link } from "react-router-dom";
 
 export default class Login extends BaseCtrl {
-  signIn(props) {
+  signIn() {
     let url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
     axios.post(url, this.state).then((res) => {
       if (res.data.success) {
@@ -35,65 +35,61 @@ export default class Login extends BaseCtrl {
 
   render() {
     return (
-      <div>
-        <div className="bg-color">
-          <div className="container w-50">
-            <h1 className="text-center mb-3">Login</h1>
-            <table className="table table-striped-columns table-sm table-light align-middle">
-              <tbody>
-                <tr>
-                  <td colSpan="3" className="text-danger text-center txtHgt">
-                    {this.state.message}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="px-3"> Login Id: </th>
-                  <td>
-                    <input
-                      type="email"
-                      name="loginId"
-                      className="form-control"
-                      onChange={(ev) => this.changeState(ev)}
-                    />
-                  </td>
-                  <td className="text-danger">
-                    {this.state.inputError.loginId}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="px-3">Password: </th>
-                  <td>
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      onChange={(ev) => this.changeState(ev)}
-                    />
-                  </td>
-                  <td className="text-danger">
-                    {this.state.inputError.password}
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="3" className="text-center">
-                    <button className="myBtn" onClick={() => this.signIn()}>
-                      Login
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="3" className="text-center">
-                    <Link
-                      to='/Registration'
-                      className="btn btn-link text-decoration-none"
-                    >
-                      Not a User <strong>Register</strong> here
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <div className="bg-color">
+        <div className="container w-50">
+          <h1 className="text-center mb-3">Login</h1>
+          <table className="table table-striped-columns table-sm table-danger align-middle">
+            <tbody>
+              <tr>
+                <td colSpan="3" className="text-danger text-center txtHgt">
+                  {this.state.message}
+                </td>
+              </tr>
+              <tr>
+                <th className="px-3"> Login Id: </th>
+                <td>
+                  <input
+                    type="email"
+                    name="loginId"
+                    className="form-control"
+                    onChange={(ev) => this.changeState(ev)}
+                  />
+                </td>
+                <td className="text-danger">{this.state.inputError.loginId}</td>
+              </tr>
+              <tr>
+                <th className="px-3">Password: </th>
+                <td>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    onChange={(ev) => this.changeState(ev)}
+                  />
+                </td>
+                <td className="text-danger">
+                  {this.state.inputError.password}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="3" className="text-center">
+                  <button className="btn btn-dark" onClick={() => this.signIn()}>
+                    Login
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="3" className="text-center">
+                  <Link
+                    to="/addUser"
+                    className="btn btn-link text-decoration-none"
+                  >
+                    Not a User <strong>Register</strong> here
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     );

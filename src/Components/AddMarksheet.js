@@ -11,11 +11,12 @@ export default class AddMarksheet extends BaseCtrl {
 
   render() {
     return (
-      <div className="container w-50">
-        <h1 className="text-center mb-3">
-          {this.props.match.params.pid ? "Update Marksheet" : "Add Marksheet"}
-        </h1>
-          <table className="table table-warning table-striped-columns table-sm align-middle">
+      <div className="bg-color">
+        <div className="container w-50">
+          <h1 className="text-center mb-3">
+            {this.props.match.params.pid ? "Update Marksheet" : "Add Marksheet"}
+          </h1>
+          <table className="table table-secondary table-striped-columns table-sm align-middle">
             <tbody>
               <tr>
                 <td
@@ -26,7 +27,9 @@ export default class AddMarksheet extends BaseCtrl {
                 </td>
               </tr>
               <tr>
-                <th className="px-3" required>Student ID: </th>
+                <th className="px-3" required>
+                  Student ID:{" "}
+                </th>
                 <td>
                   <input
                     type="number"
@@ -36,7 +39,9 @@ export default class AddMarksheet extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
-                <td className="text-danger">{this.state.inputError.studentId}</td>
+                <td className="text-danger">
+                  {this.state.inputError.studentId}
+                </td>
               </tr>
               <tr>
                 <th className="px-3">Name: </th>
@@ -62,7 +67,9 @@ export default class AddMarksheet extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
-                <td className="text-danger">{this.state.inputError.chemistry}</td>
+                <td className="text-danger">
+                  {this.state.inputError.chemistry}
+                </td>
               </tr>
               <tr>
                 <th className="px-3">Maths: </th>
@@ -106,8 +113,8 @@ export default class AddMarksheet extends BaseCtrl {
               <tr>
                 <td colSpan="3" className="text-center">
                   <button
-                    className="myBtn"
-                    onClick={(ev) => this.save("Marksheet", ev)}
+                    className="btn btn-dark"
+                    onClick={() => this.save("Marksheet")}
                   >
                     {this.props.match.params.pid
                       ? "Update Marksheet"
@@ -118,7 +125,7 @@ export default class AddMarksheet extends BaseCtrl {
               <tr>
                 <td colSpan="3" className="text-center">
                   <button
-                    className="myBtn"
+                    className="btn btn-dark"
                     onClick={() => this.reset("Marksheet")}
                   >
                     reset
@@ -127,6 +134,7 @@ export default class AddMarksheet extends BaseCtrl {
               </tr>
             </tbody>
           </table>
+        </div>
       </div>
     );
   }

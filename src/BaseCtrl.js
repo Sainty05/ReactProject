@@ -68,13 +68,13 @@ export default class BaseCtrl extends Component {
     });
   }
 
-  save(item, ev) {
-    ev.preventDefault();
+  save(item) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/save`;
     axios.post(url, this.state).then((res) => {
       this.setState({ list: res.data.result.data });
       if (res.data.success) {
         if (localStorage.token) {
+          this.delete(item, this.props.match.params.pid);
           this.setState({
             message: `${item} ${
               this.props.match.params.pid ? "Updated" : "Added"
@@ -109,30 +109,32 @@ export default class BaseCtrl extends Component {
         }
       } else {
         if (res.data.result.message === undefined) {
+          let inputerror = res.data.result.inputerror;
           this.setState({
             inputError: {
-              roleId: res.data.result.inputerror.roleId,
-              loginId: res.data.result.inputerror.loginId,
-              password: res.data.result.inputerror.password,
-              studentId: res.data.result.inputerror.studentId,
-              chemistry: res.data.result.inputerror.chemistry,
-              maths: res.data.result.inputerror.maths,
-              physics: res.data.result.inputerror.physics,
-              rollNo: res.data.result.inputerror.rollNo,
-              name: res.data.result.inputerror.name,
-              phoneNo: res.data.result.inputerror.phoneNo,
-              address: res.data.result.inputerror.address,
-              city: res.data.result.inputerror.city,
-              state: res.data.result.inputerror.state,
-              discription: res.data.result.inputerror.discription,
-              lastName: res.data.result.inputerror.lastName,
-              firstName: res.data.result.inputerror.firstName,
-              collegeId: res.data.result.inputerror.collegeId,
-              mobileNo: res.data.result.inputerror.mobileNo,
-              email: res.data.result.inputerror.email,
-              collegeName: res.data.result.inputerror.collegeId,
+              roleId: inputerror.roleId,
+              loginId: inputerror.loginId,
+              password: inputerror.password,
+              studentId: inputerror.studentId,
+              chemistry: inputerror.chemistry,
+              maths: inputerror.maths,
+              physics: inputerror.physics,
+              rollNo: inputerror.rollNo,
+              name: inputerror.name,
+              phoneNo: inputerror.phoneNo,
+              address: inputerror.address,
+              city: inputerror.city,
+              state: inputerror.state,
+              discription: inputerror.discription,
+              lastName: inputerror.lastName,
+              firstName: inputerror.firstName,
+              collegeId: inputerror.collegeId,
+              mobileNo: inputerror.mobileNo,
+              email: inputerror.email,
+              collegeName: inputerror.collegeId,
             },
             message: "",
+            txtClr: "danger",
           });
         } else {
           this.setState({
@@ -141,6 +143,7 @@ export default class BaseCtrl extends Component {
               loginId: "",
               password: "",
             },
+            txtClr: "danger",
           });
         }
       }
@@ -151,27 +154,28 @@ export default class BaseCtrl extends Component {
     let id = this.props.match.params.pid;
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/get/` + id;
     axios.get(url).then((res) => {
+      let data = res.data.result.data;
       this.setState({
-        studentId: res.data.result.data.studentId,
-        name: res.data.result.data.name,
-        physics: res.data.result.data.physics,
-        chemistry: res.data.result.data.chemistry,
-        maths: res.data.result.data.maths,
-        rollNo: res.data.result.data.rollNo,
-        phoneNo: res.data.result.data.phoneNo,
-        address: res.data.result.data.address,
-        loginId: res.data.result.data.loginId,
-        password: res.data.result.data.password,
-        city: res.data.result.data.city,
-        state: res.data.result.data.state,
-        discription: res.data.result.data.discription,
-        lastName: res.data.result.data.lastName,
-        firstName: res.data.result.data.firstName,
-        collegeId: res.data.result.data.collegeId,
-        mobileNo: res.data.result.data.mobileNo,
-        email: res.data.result.data.email,
-        collegeName: res.data.result.data.collegeName,
-        roleId: res.data.result.data.roleId,
+        studentId: data.studentId,
+        name: data.name,
+        physics: data.physics,
+        chemistry: data.chemistry,
+        maths: data.maths,
+        rollNo: data.rollNo,
+        phoneNo: data.phoneNo,
+        address: data.address,
+        loginId: data.loginId,
+        password: data.password,
+        city: data.city,
+        state: data.state,
+        discription: data.discription,
+        lastName: data.lastName,
+        firstName: data.firstName,
+        collegeId: data.collegeId,
+        mobileNo: data.mobileNo,
+        email: data.email,
+        collegeName: data.collegeName,
+        roleId: data.roleId,
       });
     });
   }
@@ -179,16 +183,19 @@ export default class BaseCtrl extends Component {
   delete(item, id) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/delete/` + id;
     axios.get(url).then((res) => {
-      if (res.data.success) {
-        this.setState({
-          message: `${item} Id No. ${id} Deleted`,
-          txtClr: "success",
-        });
-      } else {
-        this.setState({
-          message: `${item} Id No. ${id} didn't Deleted`,
-          txtClr: "danger",
-        });
+      if (!this.props.match.params.pid) {
+        if (res.data.success) {
+          this.setState({
+            message: `${item} Deleted`,
+            txtClr: "success",
+          });
+          this.search(item);
+        } else {
+          this.setState({
+            message: `${item} Id No. ${id} didn't Deleted`,
+            txtClr: "danger",
+          });
+        }
       }
     });
   }
