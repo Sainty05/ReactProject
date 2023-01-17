@@ -14,11 +14,11 @@ export default class StudentList extends BaseCtrl {
     return (
       <div className="bg-color">
         <div className="container">
-          <h1 className="text-center mb-3">Students List</h1>
+          <h1 className="text-center mt-1">STUDENT LIST</h1>
           <h6 colSpan="2" className={`text-${this.state.txtClr} text-center`}>
             {this.state.message}
           </h6>
-          <div className="row row-cols-lg-auto g-3 align-items-center my-4 justify-content-center">
+          <div className="row row-cols-lg-auto g-3 align-items-center mb-4 mt-1 justify-content-center">
             <div className="col-12">
               <div className="input-group">
                 <input

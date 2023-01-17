@@ -85,16 +85,24 @@
 
 /* App */
 
-.app {
-  background-image: url("./Assests/Logo.jpg");
-  background-size: cover;
+.appLogin {
+  background-image: url("./Assests/NCS_PNG.png");
   min-height: 82vh;
-  background-blend-mode: lighten;
-  opacity: 0.3;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
+.appHome{
+  background-image: url("./Assests/bg-1.jpg");
+  min-height: 82vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: .8;
+}
+
+
 .bg-color {
-  background-color: rgb(253, 157, 157);
+  background-color: rgb(250, 156, 156);
   padding: 5px;
   min-height: 82vh;
 }
@@ -107,4 +115,5 @@
   text-align: center;
   width: 100%;
   height: 5vh;
+  opacity: .9;
 }

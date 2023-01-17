@@ -4,6 +4,14 @@ import BaseCtrl from "../BaseCtrl";
 export default class AddRole extends BaseCtrl {
   constructor(props) {
     super(props);
+    this.state = {
+      discription: "",
+      name: "",
+      inputError: {
+        discription: "",
+        name: "",
+      },
+    };
     if (this.props.match.params.pid) {
       this.edit("Role");
     }
@@ -14,7 +22,7 @@ export default class AddRole extends BaseCtrl {
       <div className="bg-color">
         <div className="container w-50">
           <h1 className="text-center mb-3">
-            {this.props.match.params.pid ? "Update Role" : "Add Role"}
+            {this.props.match.params.pid ? "UPDATE ROLE" : "ADD ROLE"}
           </h1>
           <table className="table table-striped-columns table-sm table-secondary align-middle">
             <tbody>
@@ -56,14 +64,20 @@ export default class AddRole extends BaseCtrl {
               </tr>
               <tr>
                 <td colSpan="3" className="text-center">
-                  <button className="btn btn-dark" onClick={() => this.save("Role")}>
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => this.save("Role")}
+                  >
                     {this.props.match.params.pid ? "Update Role" : "Add Role"}
                   </button>
                 </td>
               </tr>
               <tr>
-                  <td colSpan="3" className="text-center">
-                  <button className="btn btn-dark" onClick={() => this.reset("Role")}>
+                <td colSpan="3" className="text-center">
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => this.reset("Role")}
+                  >
                     Reset
                   </button>
                 </td>

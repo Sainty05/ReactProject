@@ -5,6 +5,20 @@ import BaseCtrl from "../BaseCtrl";
 export default class AddUser extends BaseCtrl {
   constructor(props) {
     super(props);
+    this.state = {
+      firstName: "",
+      lastName: "",
+      loginId: "",
+      roleId: "",
+      inputError: {
+        lastName: "",
+        firstName: "",
+        loginId: "",
+        roleId: "",
+      },
+      list: [],
+      searchList: [],
+    };
     if (this.props.match.params.pid) {
       this.edit("User");
     }
@@ -16,10 +30,10 @@ export default class AddUser extends BaseCtrl {
         <div className="container w-50">
           <h1 className="text-center mb-3">
             {!localStorage.token
-              ? "Register Here"
+              ? "REGISTER HERE"
               : this.props.match.params.pid
-              ? "Update User"
-              : "Add User"}
+              ? "UPDATE USER"
+              : "ADD USER"}
           </h1>
           <table className="table table-striped-columns table-sm table-secondary align-middle">
             <tbody>
@@ -110,7 +124,10 @@ export default class AddUser extends BaseCtrl {
               </tr>
               <tr>
                 <td colSpan="3" className="text-center">
-                  <button className="btn btn-dark" onClick={() => this.save("User")}>
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => this.save("User")}
+                  >
                     {!localStorage.token
                       ? "Register"
                       : this.props.match.params.pid

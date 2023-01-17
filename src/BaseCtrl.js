@@ -5,51 +5,11 @@ export default class BaseCtrl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      phoneNo: "",
-      address: "",
-      loginId: "",
-      password: "",
-      city: "",
-      state: "",
-      studentId: "",
-      chemistry: "",
-      maths: "",
-      physics: "",
-      discription: "",
-      lastName: "",
-      firstName: "",
-      collegeId: "",
-      mobileNo: "",
-      email: "",
-      collegeName: "",
-      rollNo: "",
-      roleId: "",
       message: "",
       txtClr: "",
       list: [],
       searchList: [],
       inputError: {
-        rollNo: "",
-        name: "",
-        phoneNo: "",
-        address: "",
-        loginId: "",
-        password: "",
-        city: "",
-        state: "",
-        studentId: "",
-        chemistry: "",
-        maths: "",
-        physics: "",
-        discription: "",
-        lastName: "",
-        firstName: "",
-        collegeId: "",
-        mobileNo: "",
-        email: "",
-        collegeName: "",
-        roleId: "",
         message: "",
       },
     };
@@ -70,37 +30,42 @@ export default class BaseCtrl extends Component {
 
   save(item) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/save`;
-    axios.post(url, this.state).then((res) => {
-      this.setState({ list: res.data.result.data });
-      if (res.data.success) {
-        if (localStorage.token) {
-          this.delete(item, this.props.match.params.pid);
-          this.setState({
-            message: `${item} ${
-              this.props.match.params.pid ? "Updated" : "Added"
-            } Successfully`,
-            txtClr: "success",
-            inputError: "",
-          });
+    axios
+      .post(url, this.state)
+      .then((res) => {
+        this.setState({ list: res.data.result.data });
+        if (res.data.success) {
+          if (localStorage.token) {
+            this.delete(item, this.props.match.params.pid);
+            this.setState({
+              message: `${item} ${
+                this.props.match.params.pid ? "Updated" : "Added"
+              } Successfully`,
+              txtClr: "success",
+              inputError: "",
+            });
+          } else {
+            window.location.href = "/login";
+          }
         } else {
-          window.location.href = "/login";
+          if (res.data.result.message === undefined) {
+            this.setState({
+              inputError: res.data.result.inputerror,
+              message: "",
+              txtClr: "danger",
+            });
+          } else {
+            this.setState({
+              message: res.data.result.message,
+              inputError: "",
+              txtClr: "danger",
+            });
+          }
         }
-      } else {
-        if (res.data.result.message === undefined) {
-          this.setState({
-            inputError: res.data.result.inputerror,
-            message: "",
-            txtClr: "danger",
-          });
-        } else {
-          this.setState({
-            message: res.data.result.message,
-            inputError: "",
-            txtClr: "danger",
-          });
-        }
-      }
-    });
+      })
+      .catch((err) => {
+        console.log("hello");
+      });
   }
 
   edit(item) {

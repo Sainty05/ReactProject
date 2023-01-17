@@ -4,6 +4,20 @@ import BaseCtrl from "../BaseCtrl";
 export default class AddMarksheet extends BaseCtrl {
   constructor(props) {
     super(props);
+    this.state = {
+      chemistry: "",
+      studentId: "",
+      maths: "",
+      physics: "",
+      rollNo: "",
+      inputError: {
+        chemistry: "",
+        studentId: "",
+        maths: "",
+        physics: "",
+        rollNo: "",
+      },
+    };
     if (this.props.match.params.pid) {
       this.edit("Marksheet");
     }
@@ -14,7 +28,7 @@ export default class AddMarksheet extends BaseCtrl {
       <div className="bg-color">
         <div className="container w-50">
           <h1 className="text-center mb-3">
-            {this.props.match.params.pid ? "Update Marksheet" : "Add Marksheet"}
+            {this.props.match.params.pid ? "UPDATE MARKSHEET" : "ADD MARKSHEET"}
           </h1>
           <table className="table table-secondary table-striped-columns table-sm align-middle">
             <tbody>

@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Home extends Component {
   render() {
     return (
-        <div className="app"></div>
-    )
+      <>
+        {!localStorage.token ? (
+          <div className="appLogin"></div>
+        ) : (
+          <div className="appHome"></div>
+        )}
+      </>
+    );
   }
 }

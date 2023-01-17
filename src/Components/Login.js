@@ -5,11 +5,22 @@ import BaseCtrl from "../BaseCtrl";
 import { Link } from "react-router-dom";
 
 export default class Login extends BaseCtrl {
+  constructor(){
+    super()
+    this.state= {
+      loginId:"",
+      password:"",
+      inputError:{
+        loginId:"",
+        password:""
+      }
+    }
+  }
   signIn() {
     let url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
     axios.post(url, this.state).then((res) => {
       if (res.data.success) {
-        localStorage.setItem("token", res.data.result.data.firstName);
+        localStorage.setItem("token", res.data.result.data.name);
         window.location.href = "/";
       } else {
         if (res.data.result.message === undefined) {
@@ -30,6 +41,8 @@ export default class Login extends BaseCtrl {
           });
         }
       }
+    }).catch(()=>{
+      this.setState({message:"Network Error"})
     });
   }
 
@@ -37,7 +50,7 @@ export default class Login extends BaseCtrl {
     return (
       <div className="bg-color">
         <div className="container w-50">
-          <h1 className="text-center mb-3">Login</h1>
+          <h1 className="text-center mb-3">LOGIN HERE</h1>
           <table className="table table-striped-columns table-sm table-danger align-middle">
             <tbody>
               <tr>

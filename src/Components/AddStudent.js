@@ -4,6 +4,20 @@ import BaseCtrl from "../BaseCtrl";
 export default class AddStudent extends BaseCtrl {
   constructor(props) {
     super(props);
+    this.state = {
+      lastName: "",
+      firstName: "",
+      collegeId: "",
+      mobileNo: "",
+      email: "",
+      inputError: {
+        lastName: "",
+        firstName: "",
+        collegeId: "",
+        mobileNo: "",
+        email: "",
+      },
+    };
     if (this.props.match.params.pid) {
       this.edit("Student");
     }
@@ -13,7 +27,7 @@ export default class AddStudent extends BaseCtrl {
       <div className="bg-color">
         <div className="container w-50">
           <h1 className="text-center mb-3">
-            {this.props.match.params.pid ? "Update Student" : "Add Student"}
+            {this.props.match.params.pid ? "UPDATE STUDENT" : "ADD STUDENT"}
           </h1>
           <table className="table table-striped-columns table-sm table-secondary align-middle">
             <tbody>

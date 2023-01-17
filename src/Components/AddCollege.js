@@ -5,6 +5,20 @@ import "../App.css";
 export default class AddCollege extends BaseCtrl {
   constructor(props) {
     super(props);
+    this.state = {
+      address: "",
+      city: "",
+      name: "",
+      state: "",
+      phoneNo: "",
+      inputError: {
+        address: "",
+        city: "",
+        name: "",
+        state: "",
+        phoneNo: "",
+      },
+    };
     if (this.props.match.params.pid) {
       this.edit("College");
     }
@@ -15,7 +29,7 @@ export default class AddCollege extends BaseCtrl {
       <div className="bg-color">
         <div className="container w-50">
           <h1 className="text-center mb-3">
-            {this.props.match.params.pid ? "Update College" : "Add College"}
+            {this.props.match.params.pid ? "UPDATE COLLEGE" : "ADD COLLEGE"}
           </h1>
           <table className="table table-striped-columns table-sm table-secondary align-middle">
             <tbody>

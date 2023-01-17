@@ -18,9 +18,7 @@ export default class AllRoutes extends Component {
     return (
       <div>
         <Switch>
-          <Route path="/login">
-            <Login/>
-          </Route>
+          <Route path="/login" component={Login}/>
           <Route path="/MarksheetList" component={MarksheetList} />
           <Route path="/UserList" component={UserList} />
           <Route path="/StudentList" component={StudentList} />
