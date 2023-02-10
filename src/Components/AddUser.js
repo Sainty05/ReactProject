@@ -6,15 +6,20 @@ export default class AddUser extends BaseCtrl {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
+      firstName:"",
       lastName: "",
       loginId: "",
       roleId: "",
+      password:"",
+      customError:{
+        password:"",
+      },
       inputError: {
-        lastName: "",
         firstName: "",
+        lastName: "",
         loginId: "",
         roleId: "",
+        password:""
       },
       list: [],
       searchList: [],
@@ -29,7 +34,7 @@ export default class AddUser extends BaseCtrl {
       <div className="bg-color">
         <div className="container w-50">
           <h1 className="text-center mb-3">
-            {!localStorage.token
+            {!sessionStorage.token
               ? "REGISTER HERE"
               : this.props.match.params.pid
               ? "UPDATE USER"
@@ -100,7 +105,7 @@ export default class AddUser extends BaseCtrl {
                   />
                 </td>
                 <td className="text-danger">
-                  {this.state.inputError.password}
+                  {this.state.customError.password}
                 </td>
               </tr>
               <tr>
@@ -128,7 +133,7 @@ export default class AddUser extends BaseCtrl {
                     className="btn btn-dark"
                     onClick={() => this.save("User")}
                   >
-                    {!localStorage.token
+                    {!sessionStorage.token
                       ? "Register"
                       : this.props.match.params.pid
                       ? "Update User"
@@ -146,7 +151,7 @@ export default class AddUser extends BaseCtrl {
                   </button>
                 </td>
               </tr>
-              {!localStorage.token && (
+              {!sessionStorage.token && (
                 <tr>
                   <td colSpan="3" className="text-center">
                     <Link

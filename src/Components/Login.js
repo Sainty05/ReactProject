@@ -20,7 +20,7 @@ export default class Login extends BaseCtrl {
     let url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
     axios.post(url, this.state).then((res) => {
       if (res.data.success) {
-        localStorage.setItem("token", res.data.result.data.name);
+        sessionStorage.setItem("token", res.data.result.data.name);
         window.location.href = "/";
       } else {
         if (res.data.result.message === undefined) {
@@ -41,8 +41,8 @@ export default class Login extends BaseCtrl {
           });
         }
       }
-    }).catch(()=>{
-      this.setState({message:"Network Error"})
+    }).catch((err)=>{
+      this.setState({message:err.message})
     });
   }
 

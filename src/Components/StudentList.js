@@ -55,7 +55,6 @@ export default class StudentList extends BaseCtrl {
               <tr>
                 <th className="text-center">Index</th>
                 <th className="text-center">ID</th>
-                <th className="text-center">College Id</th>
                 <th className="text-center">First Name</th>
                 <th className="text-center">Last Name</th>
                 <th className="text-center">Contact No.</th>
@@ -71,7 +70,6 @@ export default class StudentList extends BaseCtrl {
                 <tr>
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">{ele.id}</td>
-                  <td className="text-center">{ele.collegeId}</td>
                   <td className="text-center">{ele.firstName}</td>
                   <td className="text-center">{ele.lastName}</td>
                   <td className="text-center">{ele.mobileNo}</td>

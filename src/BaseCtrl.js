@@ -30,42 +30,53 @@ export default class BaseCtrl extends Component {
 
   save(item) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/save`;
-    axios
-      .post(url, this.state)
-      .then((res) => {
-        this.setState({ list: res.data.result.data });
-        if (res.data.success) {
-          if (localStorage.token) {
-            this.delete(item, this.props.match.params.pid);
-            this.setState({
-              message: `${item} ${
-                this.props.match.params.pid ? "Updated" : "Added"
-              } Successfully`,
-              txtClr: "success",
-              inputError: "",
-            });
-          } else {
-            window.location.href = "/login";
-          }
+    axios.post(url, this.state).then((res) => {
+      this.setState({ list: res.data.result.data });
+      if (res.data.success) {
+        if (sessionStorage.token) {
+          this.delete(item, this.props.match.params.pid);
+          this.setState({
+            message: `${item} ${
+              this.props.match.params.pid ? "Updated" : "Added"
+            } Successfully`,
+            txtClr: "success",
+            inputError: "",
+          });
         } else {
-          if (res.data.result.message === undefined) {
-            this.setState({
-              inputError: res.data.result.inputerror,
-              message: "",
-              txtClr: "danger",
-            });
-          } else {
-            this.setState({
-              message: res.data.result.message,
-              inputError: "",
-              txtClr: "danger",
-            });
-          }
+          window.location.href = "/login";
         }
-      })
-      .catch((err) => {
-        console.log("hello");
-      });
+      } else {
+        if (
+          res.data.result.message === undefined &&
+          (this.state.password === "" || this.state.name === "")
+        ) {
+          this.setState({
+            inputError: res.data.result.inputerror,
+            customError: { password: "Must not be empty", name: "Must not be empty"  },
+            message: "",
+            txtClr: "danger",
+          });
+        } else if (this.state.password === "" || this.state.name === "" ) {
+          this.setState({
+            customError: { password: "Must not be empty", name: "Must not be empty" },
+            message: "",
+            txtClr: "danger",
+          });
+        } else if (res.data.result.message === undefined) {
+          this.setState({
+            inputError: res.data.result.inputerror,
+            message: "",
+            txtClr: "danger",
+          });
+        } else {
+          this.setState({
+            message: res.data.result.message,
+            inputError: "",
+            txtClr: "danger",
+          });
+        }
+      }
+    });
   }
 
   edit(item) {
@@ -101,19 +112,17 @@ export default class BaseCtrl extends Component {
   delete(item, id) {
     let url = `http://api.sunilos.com:9080/ORSP10/${item}/delete/` + id;
     axios.get(url).then((res) => {
-      if (!this.props.match.params.pid) {
-        if (res.data.success) {
-          this.setState({
-            message: `${item} Deleted`,
-            txtClr: "success",
-          });
-          this.search(item);
-        } else {
-          this.setState({
-            message: `${item} Id No. ${id} didn't Deleted`,
-            txtClr: "danger",
-          });
-        }
+      if (res.data.success) {
+        this.setState({
+          message: `${item} Deleted`,
+          txtClr: "success",
+        });
+        this.search(item);
+      } else {
+        this.setState({
+          message: `${item} Id No. ${id} didn't Deleted`,
+          txtClr: "danger",
+        });
       }
     });
   }
@@ -122,14 +131,21 @@ export default class BaseCtrl extends Component {
     if (this.props.match.params.pid) {
       this.edit(item);
       this.setState({ message: `Input Feilds Reset`, txtClr: "success" });
-    }
-    if (!this.props.match.params.pid) {
+    } else if (item === "User") {
       this.setState({
-        name: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        roleId: "",
+        inputError: "",
+        customError: "",
+        message: `Input Feilds Reset`,
+        txtClr: "success",
+      });
+    } else {
+      this.setState({
         phoneNo: "",
         address: "",
-        loginId: "",
-        password: "",
         city: "",
         state: "",
         studentId: "",
@@ -137,18 +153,18 @@ export default class BaseCtrl extends Component {
         maths: "",
         physics: "",
         discription: "",
-        lastName: "",
         firstName: "",
+        lastName: "",
         collegeId: "",
         mobileNo: "",
         email: "",
-        collegeName: "",
+        name: "",
         rollNo: "",
-        roleId: "",
+        inputError: "",
+        customError: "",
+        message: `Input Feilds Reset`,
+        txtClr: "success",
       });
     }
-    this.setState({
-      inputError: "",
-    });
   }
 }

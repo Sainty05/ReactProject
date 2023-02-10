@@ -70,7 +70,7 @@ export default class AddStudent extends BaseCtrl {
                 </td>
               </tr>
               <tr>
-                <th className="px-3">College ID: </th>
+                <th className="px-3">College Id: </th>
                 <td>
                   <input
                     type="text"
@@ -82,21 +82,6 @@ export default class AddStudent extends BaseCtrl {
                 </td>
                 <td className="text-danger">
                   {this.state.inputError.collegeId}
-                </td>
-              </tr>
-              <tr>
-                <th className="px-3">College Name: </th>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="collegeName"
-                    value={this.state.collegeName}
-                    onChange={(ev) => this.changeState(ev)}
-                  />
-                </td>
-                <td className="text-danger">
-                  {this.state.inputError.collegeName}
                 </td>
               </tr>
               <tr>

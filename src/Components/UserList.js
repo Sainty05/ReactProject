@@ -75,7 +75,7 @@ export default class UserList extends BaseCtrl {
                   <td className="text-center">{ele.loginId}</td>
                   <td className="text-center">{ele.roleId}</td>
                   <td className="text-center">
-                    {new Date(ele.lastLogin).toLocaleString()}
+                    { ele.lastLogin === null ? "Never" : new Date(ele.lastLogin).toLocaleString()}
                   </td>
                   <td className="text-center">
                     <Link to={"/User/" + ele.id} className="btn btn-light">

@@ -10,6 +10,7 @@ export default class AddMarksheet extends BaseCtrl {
       maths: "",
       physics: "",
       rollNo: "",
+      name:"",
       inputError: {
         chemistry: "",
         studentId: "",
@@ -17,6 +18,9 @@ export default class AddMarksheet extends BaseCtrl {
         physics: "",
         rollNo: "",
       },
+      customError:{
+        name:""
+      }
     };
     if (this.props.match.params.pid) {
       this.edit("Marksheet");
@@ -68,7 +72,7 @@ export default class AddMarksheet extends BaseCtrl {
                     onChange={(ev) => this.changeState(ev)}
                   />
                 </td>
-                <td className="text-danger">{this.state.inputError.name}</td>
+                <td className="text-danger">{this.state.customError.name}</td>
               </tr>
               <tr>
                 <th className="px-3">Chemistry: </th>

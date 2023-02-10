@@ -43,7 +43,6 @@ export default class collegeList extends BaseCtrl {
             <thead>
               <tr>
                 <th className="text-center">Index</th>
-                <th className="text-center">ID</th>
                 <th className="text-center">Name</th>
                 <th className="text-center">Address</th>
                 <th className="text-center">City</th>
@@ -58,7 +57,6 @@ export default class collegeList extends BaseCtrl {
               {this.state.searchList.map((ele, index) => (
                 <tr>
                   <td className="text-center">{index + 1}</td>
-                  <td className="text-center">{ele.id}</td>
                   <td className="text-center">{ele.name}</td>
                   <td className="text-center">{ele.address}</td>
                   <td className="text-center">{ele.city}</td>

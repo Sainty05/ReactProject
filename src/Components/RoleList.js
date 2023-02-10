@@ -43,7 +43,7 @@ export default class RoleList extends BaseCtrl {
             <thead>
               <tr>
                 <th className="text-center">Index</th>
-                <th className="text-center">ID</th>
+                <th className="text-center">Role Id</th>
                 <th className="text-center">Name</th>
                 <th className="text-center">Description</th>
                 <th className="text-center">Status</th>

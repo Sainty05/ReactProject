@@ -4,7 +4,7 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        {!localStorage.token ? (
+        {!sessionStorage.token ? (
           <div className="appLogin"></div>
         ) : (
           <div className="appHome"></div>

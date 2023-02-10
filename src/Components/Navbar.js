@@ -6,7 +6,7 @@ import "bootstrap/dist/js/bootstrap.js";
 
 export default class Navbar extends Component {
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "/login";
   }
   render() {
@@ -28,7 +28,7 @@ export default class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
-        {!localStorage.token ? (
+        {!sessionStorage.token ? (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 ms-2 mb-lg-0">
               <li className="nav-item mx-2 my-1">
@@ -131,7 +131,7 @@ export default class Navbar extends Component {
                     >
                       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                     </svg>
-                    {localStorage.getItem("token")}
+                    {sessionStorage.getItem("token")}
                   </h6>
                 </li>
                 <li className="nav-item mx-2 my-1 align-self-center">
